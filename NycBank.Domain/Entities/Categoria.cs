@@ -10,11 +10,13 @@ namespace NycBank.Domain.Entities
         public Categoria(string nome)
         {
             Nome = nome;
+            _produto = new List<Produto>();
         }
 
         public string Nome { get; private set; }
 
         public IReadOnlyCollection<Produto> Produtos { get { return _produto.ToArray(); } }
+
 
         public void UpdateCategoria(string nome)
         {
