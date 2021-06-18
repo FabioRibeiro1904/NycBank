@@ -49,7 +49,8 @@ namespace NycBank.Infra.Repository
 
         public Produto GetId(Guid id)
         {
-            return _context.Produtos.FirstOrDefault(ProdutoQueries.GetId(id));
+            return _context.Produtos.Include(x=>x.Categorias).FirstOrDefault(ProdutoQueries.GetId(id));
         }
+
     }
 }

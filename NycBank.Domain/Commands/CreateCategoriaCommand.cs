@@ -12,16 +12,16 @@ namespace NycBank.Domain.Commands
         }
         public CreateCategoriaCommand(string nome)
         {
-            Nome = nome;
+            NomeCategoria = nome;
         }
 
-        public string Nome { get;  set; }
+        public string NomeCategoria { get;  set; }
 
         public void Validate()
         {
             AddNotifications(
              new Contract()
-            .HasMinLen(Nome, 3, "Nome", "Por favor, Coloque o Primeiro e o último nome para pesquisar"));
+            .HasMinLen(NomeCategoria, 3, "Nome", "Por favor, Coloque o Primeiro e o último nome para pesquisar"));
         }
     }
 }

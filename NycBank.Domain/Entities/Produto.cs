@@ -29,7 +29,8 @@ namespace NycBank.Domain.Entities
 
         public void AddCategoria(Categoria categoria)
         {
-            Categorias.Add(categoria);
+                Categorias.Add(categoria);
+
         }
     }
 }

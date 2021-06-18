@@ -14,7 +14,7 @@ namespace NycBank.Domain.Commands
 
         public CreateProdutoCommand(string nome, decimal preco)
         {
-            Nome = nome;
+            NomeProduto = nome;
             Preco = preco;
         }
 

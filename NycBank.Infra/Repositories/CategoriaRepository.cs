@@ -30,7 +30,7 @@ namespace NycBank.Infra.Repository
 
         public Categoria GetId(Guid id)
         {
-            return _context.Categorias.FirstOrDefault(CategoriaQueries.GetId(id));
+            return _context.Categorias.Include(x=>x.Produtos).FirstOrDefault(CategoriaQueries.GetId(id));
         }
 
         public IEnumerable<Categoria> GetList()

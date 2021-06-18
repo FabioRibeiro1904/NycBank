@@ -22,11 +22,11 @@ namespace NycBank.Domain.Handlers
                 return new GenericCommandResult(false, "Digite um nome para categoria por gentileza", command.Notifications);
 
 
-            var validName = _repository.GetName(command.Nome);
+            var validName = _repository.GetName(command.NomeCategoria);
             if (validName != null)
                 return new GenericCommandResult(false, "ops,esse nome ja existe", command.Notifications);
 
-            var categoria = new Categoria (command.Nome);
+            var categoria = new Categoria (command.NomeCategoria);
 
             _repository.Create(categoria);
             return new GenericCommandResult(true, "Produto criado com sucesso", categoria);
@@ -40,7 +40,7 @@ namespace NycBank.Domain.Handlers
 
 
             var updateCategoria = _repository.GetId(command.Id);
-            updateCategoria.UpdateCategoria(command.Nome);
+            updateCategoria.UpdateCategoria(command.NomeCategoria);
 
             _repository.Update(updateCategoria);
 

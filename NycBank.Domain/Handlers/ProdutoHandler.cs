@@ -42,7 +42,7 @@ namespace NycBank.Domain.Handlers
 
 
            var updateProduto = _repository.GetId(command.Id);
-            updateProduto.UpdateProduto(command.Nome, command.Preco);
+            updateProduto.UpdateProduto(command.NomeProduto, command.Preco);
 
             _repository.Update(updateProduto);
 
@@ -55,14 +55,14 @@ namespace NycBank.Domain.Handlers
             if (command.CategoriaId == null && command.ProdutoId == null)
                 return new GenericCommandResult(false, "Selecione um Produto e uma categoria por gentileza", command);
 
-           var produto =  _repository.GetId(command.ProdutoId);
+            
+            var produto =  _repository.GetId(command.ProdutoId);
             var categoria = _repositoryCategory.GetId(command.CategoriaId);
 
+
             produto.AddCategoria(categoria);
-
-            _repository.Create(produto);
-
-            return new GenericCommandResult(false, "Categoria adicionado no produto com sucesso,", produto);
+            _repository.Update(produto);
+            return new GenericCommandResult(true, "Produto cadastrado com sucesso", command);
 
         }
     }

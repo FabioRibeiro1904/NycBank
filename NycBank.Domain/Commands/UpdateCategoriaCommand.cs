@@ -15,17 +15,17 @@ namespace NycBank.Domain.Commands
         public UpdateCategoriaCommand(Guid id, string nome)
         {
             Id = id;
-            Nome = nome;
+            NomeCategoria = nome;
         }
 
         public Guid Id { get; set; }
-        public string Nome { get; set; }
+        public string NomeCategoria { get; set; }
 
         public void Validate()
         {
             AddNotifications(
             new Contract()
-            .HasMinLen(Nome, 3, "Nome", "Por favor, Coloque o Primeiro e o último nome para pesquisar"));
+            .HasMinLen(NomeCategoria, 3, "Nome", "Por favor, Coloque o Primeiro e o último nome para pesquisar"));
         }
     }
 }
