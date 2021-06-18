@@ -24,8 +24,8 @@ namespace NycBank.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
-            //services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            //services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
             services.AddTransient<ProdutoHandler, ProdutoHandler>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<CategoriaHandler, CategoriaHandler>();

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NycBank.Domain.Entities
 {
-    public class Produto : Entity
+    public class Produto 
     {
         private IList<Categoria> _categoria;
 
@@ -14,6 +15,7 @@ namespace NycBank.Domain.Entities
             _categoria = new List<Categoria>();
         }
 
+        public Guid ProdutoId { get; private set; }
 
         public string Nome { get; private set; }
 
