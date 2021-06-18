@@ -46,5 +46,10 @@ namespace NycBank.Infra.Repository
             _context.Entry(produto).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public Produto GetId(Guid id)
+        {
+            return _context.Produtos.FirstOrDefault(ProdutoQueries.GetId(id));
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace NycBank.Api.Controllers
             return (GenericCommandResult)handle.Handle(command);
         }
 
-        [Route("{nome:string}")]
+        [Route("{nome:alpha}")]
         [HttpGet]
         public IActionResult GetName(string nome,
         [FromServices] IProdutoRepository repository)
@@ -35,6 +35,15 @@ namespace NycBank.Api.Controllers
             var nomeProduto = repository.GetName(nome);
             return Ok(nomeProduto);
 
+        }
+
+        [Route("")]
+        [HttpPut]
+        public GenericCommandResult UpdateProduto(
+        [FromBody] UpdateProdutoCommand command,
+        [FromServices] ProdutoHandler handle)
+        {
+            return (GenericCommandResult)handle.Handle(command);
         }
 
         [Route("{id:guid}")]

@@ -12,6 +12,8 @@ namespace NycBank.Domain.Repository
 
         Produto GetName(string name);
 
+        Produto GetId(Guid id);
+
         void Update(Produto produto);
 
         void Delete(Guid id);
