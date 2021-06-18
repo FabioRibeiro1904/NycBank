@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NycBank.Domain.Entities;
+using NycBank.Domain.Queries;
 using NycBank.Domain.Repository;
 using NycBank.Infra.Context;
 using System;
@@ -30,9 +31,9 @@ namespace NycBank.Infra.Repository
             _context.SaveChanges();
         }
 
-        public Produto GetId(Guid id)
+        public Produto GetName(string name)
         {
-            throw new NotImplementedException();
+            return _context.Produtos.FirstOrDefault(ProdutoQueries.GetName(name));
         }
 
         public IEnumerable<Produto> GetList()

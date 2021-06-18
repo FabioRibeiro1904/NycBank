@@ -10,7 +10,7 @@ namespace NycBank.Domain.Repository
 
         IEnumerable<Produto> GetList();
 
-        Produto GetId(Guid id);
+        Produto GetName(string name);
 
         void Update(Produto produto);
 
