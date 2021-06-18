@@ -22,12 +22,12 @@ namespace NycBank.Domain.Handlers
             if (command.Invalid)
             return new GenericCommandResult(false, "ops, por gentileza verifique os campos.", command.Notifications);
 
-            var validName = _repository.GetName(command.Nome);
+            var validName = _repository.GetName(command.NomeProduto);
             if (validName != null)
                 return new GenericCommandResult(false, "ops,esse nome ja existe", command.Notifications);
 
 
-            var produto = new Produto(command.Nome, command.Preco);
+            var produto = new Produto(command.NomeProduto, command.Preco);
 
             _repository.Create(produto);
                 return new GenericCommandResult(true, "Produto criado com sucesso", produto);
@@ -73,8 +73,8 @@ namespace NycBank.Domain.Handlers
 
             if (categoriaNaoExiste)
             {
-                produto.AddCategoria(categoria);
-                _repository.Create(produto);
+                produto.AddCategoria (categoria);
+                _repository.Update(produto);
 
                 return new GenericCommandResult(true, "Categoria cadastrado com sucesso", command);
             }
