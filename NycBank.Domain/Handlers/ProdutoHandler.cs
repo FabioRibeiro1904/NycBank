@@ -41,6 +41,9 @@ namespace NycBank.Domain.Handlers
 
            var updateProduto = _repository.GetId(command.Id);
             updateProduto.UpdateProduto(command.Nome, command.Preco);
+
+            _repository.Update(updateProduto);
+
             return new GenericCommandResult(true, "Dados alterados com sucesso", updateProduto);
                     
         }
