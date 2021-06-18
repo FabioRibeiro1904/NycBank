@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace NycBank.Domain.Entities
 {
-    public class Produto: Entity
+    public class Produto : Entity
     {
         private IList<Categoria> _categoria;
 

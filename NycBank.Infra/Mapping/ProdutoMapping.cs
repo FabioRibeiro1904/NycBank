@@ -8,7 +8,8 @@ namespace NycBank.Infra.Mapping
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.ToTable("Categoria");
+            builder.ToTable("Produto");
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Nome)
                 .HasColumnType("varchar(30)")

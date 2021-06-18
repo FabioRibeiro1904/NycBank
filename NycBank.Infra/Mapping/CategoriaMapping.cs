@@ -8,18 +8,16 @@ namespace NycBank.Infra.Mapping
     {
         public void Configure(EntityTypeBuilder<Categoria> builder)
         {
-            builder.ToTable("Produto");
+            builder.ToTable("Categoria");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Nome)
-                .HasColumnType("voucher(30)")
+                .HasColumnType("varchar(30)")
                 .IsRequired();
 
             builder.HasMany(x => x.Produtos)
                 .WithMany(x => x.Categorias);
-
-
         }
     }
 }

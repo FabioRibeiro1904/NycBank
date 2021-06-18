@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NycBank.Domain.Handlers;
+using NycBank.Domain.Repository;
 using NycBank.Infra.Context;
+using NycBank.Infra.Repository;
 
 namespace NycBank.Api
 {
@@ -22,6 +25,8 @@ namespace NycBank.Api
         {
             services.AddControllers();
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            services.AddTransient<ProdutoHandler, ProdutoHandler>();
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
