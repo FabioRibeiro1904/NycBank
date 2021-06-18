@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NycBank.Domain.Entities;
+using NycBank.Infra.Mapping;
 
 namespace NycBank.Infra.Context
 {
     public class DataContext:DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options):base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-
         }
 
         public DbSet<Produto> Produtos { get; set; }
@@ -17,6 +17,8 @@ namespace NycBank.Infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.ApplyConfiguration(new ProdutoMapping());
+            modelBuilder.ApplyConfiguration(new CategoriaMapping());
         }
     }
 }

@@ -8,5 +8,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NycBank.Domain\NycBank.Domain.csproj" />
+    <ProjectReference Include="..\NycBank.Infra\NycBank.Infra.csproj" />
+  </ItemGroup>
+
 
 </Project>
