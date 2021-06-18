@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Flunt.Notifications;
+using Flunt.Validations;
+using System;
 
 namespace NycBank.Domain.Commands.Contracts
 {
-    public class UpdateProdutoCommand:ICommand
+    public class UpdateProdutoCommand: Notifiable, ICommand
     {
         public UpdateProdutoCommand()
         {
@@ -23,7 +25,10 @@ namespace NycBank.Domain.Commands.Contracts
 
         public void Validate()
         {
-            throw new NotImplementedException();
+            AddNotifications(
+            new Contract()
+            .HasMinLen(Nome, 3, "Nome", "Por favor, Coloque o Primeiro e o último nome para pesquisar")
+            .IsLowerOrEqualsThan(Preco, 0, "Preco", "por gentileza, digite um valor para o produto"));
         }
     }
 }
