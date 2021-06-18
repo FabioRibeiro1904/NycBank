@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NycBank.Infra.Repositories
+namespace NycBank.Infra.Repository
 {
     public class CategoriaRepository : ICategoriaRepository
     {

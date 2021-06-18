@@ -6,7 +6,7 @@ using NycBank.Domain.Repository;
 
 namespace NycBank.Domain.Handlers
 {
-    public class CategoriaHandler : IHandler<CreateCategoriaCommand>, IHandler<UpdateProdutoCommand>
+    public class CategoriaHandler : IHandler<CreateCategoriaCommand>, IHandler<UpdateCategoriaCommand>
     {
         private readonly ICategoriaRepository _repository;
 
@@ -32,7 +32,7 @@ namespace NycBank.Domain.Handlers
             return new GenericCommandResult(true, "Produto criado com sucesso", categoria);
         }
 
-        public ICommandResult Handle(UpdateProdutoCommand command)
+        public ICommandResult Handle(UpdateCategoriaCommand command)
         {
             command.Validate();
             if (command.Invalid)
