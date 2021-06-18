@@ -13,7 +13,7 @@ namespace NycBank.Domain.Queries
 
         public static Expression<Func<Produto, bool>> GetId(Guid id)
         {
-            return x => x.Id == id;
+            return x => x.ProdutoId == id;
         }
     }
 }

@@ -6,13 +6,15 @@ using NycBank.Domain.Repository;
 
 namespace NycBank.Domain.Handlers
 {
-    public class ProdutoHandler : IHandler<CreateProdutoCommand>, IHandler<UpdateProdutoCommand>
+    public class ProdutoHandler : IHandler<CreateProdutoCommand>, IHandler<UpdateProdutoCommand>, IHandler<ProdutoAddCategoriaCommand>
     {
         private readonly IProdutoRepository _repository;
+        private readonly ICategoriaRepository _repositoryCategory;
 
-        public ProdutoHandler(IProdutoRepository repository)
+        public ProdutoHandler(IProdutoRepository repository, ICategoriaRepository categoriaRepository)
         {
             _repository = repository;
+            _repositoryCategory = categoriaRepository;
         }
         public ICommandResult Handle(CreateProdutoCommand command)
         {
@@ -46,6 +48,22 @@ namespace NycBank.Domain.Handlers
 
             return new GenericCommandResult(true, "Dados alterados com sucesso", updateProduto);
                     
+        }
+
+        public ICommandResult Handle(ProdutoAddCategoriaCommand command)
+        {
+            if (command.CategoriaId == null && command.ProdutoId == null)
+                return new GenericCommandResult(false, "Selecione um Produto e uma categoria por gentileza", command);
+
+           var produto =  _repository.GetId(command.ProdutoId);
+            var categoria = _repositoryCategory.GetId(command.CategoriaId);
+
+            produto.AddCategoria(categoria);
+
+            _repository.Create(produto);
+
+            return new GenericCommandResult(false, "Categoria adicionado no produto com sucesso,", produto);
+
         }
     }
 }

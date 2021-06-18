@@ -10,15 +10,15 @@ namespace NycBank.Api.Controllers
 {
     public class ProdutoController : Controller
     {
-        [Route("")]
+        [Route("produto")]
         [HttpGet]
-        public IEnumerable<Produto> GetAll(
+        public IEnumerable<Produto> GetAllProduto(
             [FromServices] IProdutoRepository repository)
         {
             return repository.GetList();
         }
 
-        [Route("")]
+        [Route("produto")]
         [HttpPost]
         public GenericCommandResult CreateProduto(
         [FromBody] CreateProdutoCommand command,
@@ -27,9 +27,9 @@ namespace NycBank.Api.Controllers
             return (GenericCommandResult)handle.Handle(command);
         }
 
-        [Route("{nome:alpha}")]
+        [Route("produto/{nome:alpha}")]
         [HttpGet]
-        public IActionResult GetName(string nome,
+        public IActionResult GetProduto(string nome,
         [FromServices] IProdutoRepository repository)
         {
             var nomeProduto = repository.GetName(nome);
@@ -37,7 +37,7 @@ namespace NycBank.Api.Controllers
 
         }
 
-        [Route("")]
+        [Route("produto")]
         [HttpPut]
         public GenericCommandResult UpdateProduto(
         [FromBody] UpdateProdutoCommand command,
@@ -46,7 +46,18 @@ namespace NycBank.Api.Controllers
             return (GenericCommandResult)handle.Handle(command);
         }
 
-        [Route("{id:guid}")]
+        [Route("produto/categoria")]
+        [HttpPut]
+        public GenericCommandResult AddCategoria(
+        [FromBody] ProdutoAddCategoriaCommand command,
+        [FromServices] ProdutoHandler handle)
+        {
+            return (GenericCommandResult)handle.Handle(command);
+        }
+
+
+
+        [Route("produto/{id:guid}")]
         [HttpDelete]
         public IActionResult DelProduto(Guid id,
         [FromServices] IProdutoRepository repository)

@@ -10,14 +10,12 @@ namespace NycBank.Infra.Mapping
         {
             builder.ToTable("Categoria");
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.CategoriaId);
 
             builder.Property(x => x.Nome)
                 .HasColumnType("varchar(30)")
                 .IsRequired();
 
-            builder.HasMany(x => x.Produtos)
-                .WithMany(x => x.Categorias);
         }
     }
 }

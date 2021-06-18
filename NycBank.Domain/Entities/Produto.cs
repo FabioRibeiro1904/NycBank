@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace NycBank.Domain.Entities
 {
     public class Produto 
     {
-        private IList<Categoria> _categoria;
 
         public Produto(string nome, decimal preco)
         {
             Nome = nome;
             Preco = preco;
-            _categoria = new List<Categoria>();
+            this.Categorias = new List<Categoria>();
         }
 
         public Guid ProdutoId { get; private set; }
@@ -21,7 +19,7 @@ namespace NycBank.Domain.Entities
 
         public decimal Preco { get; private set; }
 
-        public IReadOnlyCollection<Categoria> Categorias { get { return _categoria.ToArray(); } }
+        public IList<Categoria> Categorias { get; private set; }
 
         public void UpdateProduto(string nome, decimal preco)
         {
@@ -31,7 +29,7 @@ namespace NycBank.Domain.Entities
 
         public void AddCategoria(Categoria categoria)
         {
-            _categoria.Add(categoria);
+            Categorias.Add(categoria);
         }
     }
 }
