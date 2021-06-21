@@ -46,6 +46,15 @@ namespace NycBank.Api.Controllers
             return (GenericCommandResult)handle.Handle(command);
         }
 
+        [Route("produto/categoria")]
+        [HttpPut]
+        public GenericCommandResult AddCategoria(
+        [FromBody] CategoriaAddProdutoCommand command,
+        [FromServices] CategoriaAddProdutoCommand handle)
+        {
+            return (GenericCommandResult)handle.Handle(command);
+        }
+
         [Route("categoria/{id:guid}")]
         [HttpDelete]
         public IActionResult DelCategoria(Guid id,

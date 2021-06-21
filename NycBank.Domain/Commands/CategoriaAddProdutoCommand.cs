@@ -3,14 +3,14 @@ using System;
 
 namespace NycBank.Domain.Commands
 {
-    public class ProdutoAddCategoriaCommand : ICommand
+    public class CategoriaAddProdutoCommand : ICommand
     {
-        public ProdutoAddCategoriaCommand()
+        public CategoriaAddProdutoCommand()
         {
 
         }
 
-        public ProdutoAddCategoriaCommand(Guid produtoId, Guid categoriaId)
+        public CategoriaAddProdutoCommand(Guid produtoId, Guid categoriaId)
         {
             ProdutoId = produtoId;
             CategoriaId = categoriaId;

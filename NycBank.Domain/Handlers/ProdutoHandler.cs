@@ -68,10 +68,6 @@ namespace NycBank.Domain.Handlers
 
             return new GenericCommandResult(false, "Produto já posssui uma categoria", produto);
 
-
-
-            
-
         }
     }
 }
