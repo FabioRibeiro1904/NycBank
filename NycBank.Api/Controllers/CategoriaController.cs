@@ -49,7 +49,7 @@ namespace NycBank.Api.Controllers
         [Route("categoria/produto")]
         [HttpPut]
         public GenericCommandResult AddCategoria(
-        [FromBody] CategoriaAddProdutoCommand command,
+        [FromBody] ProdutoAddCategoriaCommand command,
         [FromServices] CategoriaHandler handle)
         {
             return (GenericCommandResult)handle.Handle(command);
