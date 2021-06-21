@@ -24,12 +24,12 @@ namespace NycBank.Infra.Mapping
             builder.HasMany(x => x.Categorias)
                 .WithMany(x => x.Produtos)
                  .UsingEntity<Dictionary<string, object>>("ProdutoCategoria",
-                 x=>x.HasOne<Categoria>()
+                 x => x.HasOne<Categoria>()
                  .WithMany()
                  .HasForeignKey("CategoriaId")
                  .HasConstraintName("FK_ProdutoCategoria_Categoria_CategoriaId")
                  .OnDelete(DeleteBehavior.Cascade),
-                 x=>x.HasOne<Produto>()
+                 x => x.HasOne<Produto>()
                  .WithMany()
                  .HasForeignKey("ProdutoId")
                  .HasConstraintName("FK_CategoriaProduto_Produto_ProdutoId")

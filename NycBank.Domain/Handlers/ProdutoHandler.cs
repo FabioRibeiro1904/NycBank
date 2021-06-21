@@ -20,7 +20,7 @@ namespace NycBank.Domain.Handlers
         {
             command.Validate();
             if (command.Invalid)
-            return new GenericCommandResult(false, "ops, por gentileza verifique os campos.", command.Notifications);
+                return new GenericCommandResult(false, "ops, por gentileza verifique os campos.", command.Notifications);
 
             var validName = _repository.GetName(command.NomeProduto);
             if (validName != null)
@@ -30,24 +30,24 @@ namespace NycBank.Domain.Handlers
             var produto = new Produto(command.NomeProduto, command.Preco);
 
             _repository.Create(produto);
-                return new GenericCommandResult(true, "Produto criado com sucesso", produto);
+            return new GenericCommandResult(true, "Produto criado com sucesso", produto);
 
-   }
+        }
 
         public ICommandResult Handle(UpdateProdutoCommand command)
         {
             command.Validate();
-            if(command.Invalid)
-            return new GenericCommandResult(false, "Verifique os campos preenchidos", command.Notifications);
+            if (command.Invalid)
+                return new GenericCommandResult(false, "Verifique os campos preenchidos", command.Notifications);
 
 
-           var updateProduto = _repository.GetId(command.Id);
+            var updateProduto = _repository.GetId(command.Id);
             updateProduto.UpdateProduto(command.NomeProduto, command.Preco);
 
             _repository.Update(updateProduto);
 
             return new GenericCommandResult(true, "Dados alterados com sucesso", updateProduto);
-                    
+
         }
 
         public ICommandResult Handle(ProdutoAddCategoriaCommand command)
@@ -55,33 +55,14 @@ namespace NycBank.Domain.Handlers
             if (command.CategoriaId == null && command.ProdutoId == null)
                 return new GenericCommandResult(false, "Selecione um Produto e uma categoria por gentileza", command);
 
-            
-            var produto =  _repository.GetId(command.ProdutoId);
-            var categoria = _repositoryCategory.GetId(command.CategoriaId);
 
-            var categoriaNaoExiste = true;
-            int i = 0;
+            var produto = _repository.CheckCategoria(command.ProdutoId, command.CategoriaId);
 
-            while (categoriaNaoExiste && produto.Categorias.Count <= i)
-            {
-                if (produto.Categorias[i].CategoriaId == command.CategoriaId)
-                {
-                    categoriaNaoExiste = false;
-                }
-                i++;
-            }
 
-            if (categoriaNaoExiste)
-            {
-                produto.AddCategoria (categoria);
-                _repository.Update(produto);
+            if (produto == false)
+                return new GenericCommandResult(false, "Produto já posssui uma categoria", produto);
 
-                return new GenericCommandResult(true, "Categoria cadastrado com sucesso", command);
-            }
-
-            else
-                return new GenericCommandResult(false, "Selecione um produto e uma categoria por gentileza", command);
-
+            return new GenericCommandResult(true, "Categoria cadastrado com sucesso", produto);
 
         }
     }
