@@ -61,9 +61,9 @@ namespace NycBank.Domain.Handlers
             var categoriaAdd = produto.AddCategoria(produto, categoria);
 
             if (categoriaAdd)
-                return new GenericCommandResult(true, "Categoria cadastrado com sucesso", categoria);
+                return new GenericCommandResult(true, "Produto cadastrado com sucesso", categoria);
 
-            return new GenericCommandResult(false, "Produto já posssui uma categoria", categoria);
+            return new GenericCommandResult(false, "Essa categoria já possui um produto", categoria);
 
         }
     }
