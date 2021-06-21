@@ -27,9 +27,25 @@ namespace NycBank.Domain.Entities
             Preco = preco;
         }
 
-        public void AddCategoria(Categoria categoria)
+        public bool AddCategoria(Produto produto, Categoria categoria)
         {
+
+            var categoriaNaoExiste = true;
+            int i = 0;
+
+            while (categoriaNaoExiste && produto.Categorias.Count > 0 && i < produto.Categorias.Count)
+            {
+                if (produto.Categorias[i].CategoriaId == categoria.CategoriaId)
+                {
+                    categoriaNaoExiste = false;
+                }
+                i++;
+
+            }
+            if (categoriaNaoExiste)
                 Categorias.Add(categoria);
+
+            return categoriaNaoExiste;
 
         }
     }

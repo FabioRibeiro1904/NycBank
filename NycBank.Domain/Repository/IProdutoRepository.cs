@@ -18,6 +18,6 @@ namespace NycBank.Domain.Repository
 
         void Delete(Guid id);
 
-        bool CheckCategoria(Guid idProduto, Guid idCategoria);
+        //bool ProdutoAddCategoria(Guid idProduto, Guid idCategoria);
     }
 }

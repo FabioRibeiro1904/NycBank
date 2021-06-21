@@ -56,13 +56,21 @@ namespace NycBank.Domain.Handlers
                 return new GenericCommandResult(false, "Selecione um Produto e uma categoria por gentileza", command);
 
 
-            var produto = _repository.CheckCategoria(command.ProdutoId, command.CategoriaId);
+            var produto = _repository.GetId(command.ProdutoId);
+
+            var categoria = _repositoryCategory.GetId(command.CategoriaId);
 
 
-            if (produto == false)
-                return new GenericCommandResult(false, "Produto já posssui uma categoria", produto);
+            var categoriaAdd = produto.AddCategoria(produto, categoria);
 
-            return new GenericCommandResult(true, "Categoria cadastrado com sucesso", produto);
+            if (categoriaAdd)
+                return new GenericCommandResult(true, "Categoria cadastrado com sucesso", produto);
+
+            return new GenericCommandResult(false, "Produto já posssui uma categoria", produto);
+
+
+
+            
 
         }
     }

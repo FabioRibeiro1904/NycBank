@@ -52,32 +52,32 @@ namespace NycBank.Infra.Repository
             return _context.Produtos.Include(x=>x.Categorias).FirstOrDefault(ProdutoQueries.GetId(id));
         }
 
-        public bool CheckCategoria(Guid idProduto, Guid idCategoria)
-        {
-            var produto = _context.Produtos.Include(x=>x.Categorias).FirstOrDefault(ProdutoQueries.GetId(idProduto));
-            var categoria = _context.Categorias.FirstOrDefault(CategoriaQueries.GetId(idCategoria));
+        //public bool ProdutoAddCategoria(Guid idProduto, Guid idCategoria)
+        //{
+        //    var produto = _context.Produtos.Include(x => x.Categorias).FirstOrDefault(ProdutoQueries.GetId(idProduto));
+        //    var categoria = _context.Categorias.FirstOrDefault(CategoriaQueries.GetId(idCategoria));
 
-            var categoriaNaoExiste = true;
-            int i = 0;
+        //    var categoriaNaoExiste = true;
+        //    int i = 0;
 
-            while (categoriaNaoExiste && produto.Categorias.Count > 0 && i < produto.Categorias.Count)
-            {
-                if (produto.Categorias[i].CategoriaId == idCategoria)
-                {
-                    categoriaNaoExiste = false;
-                }
-                i++;
+        //    while (categoriaNaoExiste && produto.Categorias.Count > 0 && i < produto.Categorias.Count)
+        //    {
+        //        if (produto.Categorias[i].CategoriaId == idCategoria)
+        //        {
+        //            categoriaNaoExiste = false;
+        //        }
+        //        i++;
 
-            }
+        //    }
 
-            if (categoriaNaoExiste)
-            {
-                produto.AddCategoria(categoria);
-                _context.Entry(produto).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
-                return categoriaNaoExiste;
-        }
-        
+        //    if (categoriaNaoExiste)
+        //    {
+        //        produto.AddCategoria(categoria);
+        //        _context.Entry(produto).State = EntityState.Modified;
+        //        _context.SaveChanges();
+        //    }
+        //    return categoriaNaoExiste;
+        //}
+
     }
 }
